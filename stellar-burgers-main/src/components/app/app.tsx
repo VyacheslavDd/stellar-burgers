@@ -3,13 +3,23 @@ import '../../index.css';
 import styles from './app.module.css';
 
 import { AppHeader, IngredientDetails, Modal, OrderInfo } from '@components';
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import ProtectedRoute from '../protected-route/protected-route';
+import { useEffect } from 'react';
+import { getIngredients } from '../../../src/services/thunks';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from 'src/services/store';
 
 const App = () => {
 
   const location = useLocation();
-  const backgroundLocation = location.state?.backgroundLocation;
+  const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
+  const backgroundLocation = location.state?.background;
+
+  useEffect(() => {
+    dispatch(getIngredients());
+  }, [])
 
   return (<div className={styles.app}>
     <AppHeader />
@@ -30,9 +40,9 @@ const App = () => {
 
       {backgroundLocation &&
       <Routes>
-        <Route path='/feed/:number' element={<Modal title='Детали заказа' onClose={() => {}}><OrderInfo/></Modal>}/>
-        <Route path='/ingredients/:id' element={<Modal title='Детали ингредиента' onClose={() => {}}><IngredientDetails/></Modal>}/>
-        <Route path='/prolife/orders/:number' element={<Modal title='Детали заказа' onClose={() => {}}><OrderInfo/></Modal>}/>
+        <Route path='/feed/:number' element={<Modal title='Детали заказа' onClose={() => navigate(backgroundLocation)}><OrderInfo/></Modal>}/>
+        <Route path='/ingredients/:id' element={<Modal title='Детали ингредиента' onClose={() => navigate(backgroundLocation)}><IngredientDetails/></Modal>}/>
+        <Route path='/prolife/orders/:number' element={<Modal title='Детали заказа' onClose={() => navigate(backgroundLocation)}><OrderInfo/></Modal>}/>
       </Routes>}
   </div>)
 };

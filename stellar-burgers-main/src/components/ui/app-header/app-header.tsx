@@ -25,9 +25,9 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => {
           <Link to='/feed' className={`${styles.link} ${location.pathname.includes("feed") ? styles.link_active : ""}`}><p className='text text_type_main-default ml-2'>Лента заказов</p></Link>
         </>
       </div>
-      <Link to='/'><div className={styles.logo}>
-        <Logo className='' />
-      </div></Link>
+      <div className={styles.logo}>
+        <Link to='/'><Logo className='' /></Link>
+      </div>
       <div className={styles.link_position_last}>
         <ProfileIcon type={'primary'} />
         <Link to='/profile' className={`${styles.link} ${location.pathname.includes("profile") ? styles.link_active : ""}`}><p className='text text_type_main-default ml-2'>
