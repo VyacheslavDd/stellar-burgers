@@ -1,4 +1,4 @@
-import { getFeedsApi, getIngredientsApi, getUserApi, loginUserApi, logoutApi, registerUserApi, TLoginData, TRegisterData, updateUserApi } from "@api";
+import { getFeedsApi, getIngredientsApi, getUserApi, loginUserApi, logoutApi, orderBurgerApi, registerUserApi, TLoginData, TRegisterData, updateUserApi } from "@api";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getIngredients = createAsyncThunk(
@@ -34,4 +34,9 @@ export const loginOnEnterApp = createAsyncThunk(
 export const updateUser = createAsyncThunk(
     "auth/user",
     async (data: TRegisterData) => await updateUserApi(data)
+)
+
+export const orderBurger = createAsyncThunk(
+    "burger/order",
+    async (data: string[]) => await orderBurgerApi(data)
 )
