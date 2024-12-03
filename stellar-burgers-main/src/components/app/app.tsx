@@ -6,7 +6,7 @@ import { AppHeader, IngredientDetails, Modal, OrderInfo } from '@components';
 import { BrowserRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import ProtectedRoute from '../protected-route/protected-route';
 import { useEffect } from 'react';
-import { getIngredients } from '../../../src/services/thunks';
+import { getFeeds, getIngredients, loginOnEnterApp } from '../../../src/services/thunks';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from 'src/services/store';
 
@@ -19,6 +19,8 @@ const App = () => {
 
   useEffect(() => {
     dispatch(getIngredients());
+    dispatch(getFeeds());
+    dispatch(loginOnEnterApp());
   }, [])
 
   return (<div className={styles.app}>

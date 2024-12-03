@@ -6,11 +6,15 @@ import {
   useSelector as selectorHook
 } from 'react-redux';
 import { ingredientsReducer } from './slices/ingredientsSlice';
+import { feedsReducer } from './slices/feedsSlice';
+import { userReducer } from './slices/userSlice';
 
 
 const store = configureStore({
   reducer: {
-    ingredientsReducer
+    ingredientsReducer,
+    feedsReducer,
+    userReducer
   },
   devTools: process.env.NODE_ENV !== 'production'
 });
