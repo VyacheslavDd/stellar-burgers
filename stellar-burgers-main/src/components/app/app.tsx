@@ -8,7 +8,7 @@ import ProtectedRoute from '../protected-route/protected-route';
 import { useEffect } from 'react';
 import { getFeeds, getIngredients, loginOnEnterApp } from '../../../src/services/thunks';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from 'src/services/store';
+import { AppDispatch, useSelector } from 'src/services/store';
 
 const App = () => {
 
@@ -31,7 +31,7 @@ const App = () => {
         <Route path='/feed' element={<Feed />}/>
         <Route path='/feed/:number' element={<OrderInfo/>}/>
         <Route path='/profile/orders' element={<ProtectedRoute redirectToLogin><ProfileOrders /></ProtectedRoute>}/>
-        <Route path='/prolife/orders/:number' element={<ProtectedRoute redirectToLogin><OrderInfo/></ProtectedRoute>}/>
+        <Route path='/profile/orders/:number' element={<ProtectedRoute redirectToLogin><OrderInfo/></ProtectedRoute>}/>
         <Route path='/login' element={<ProtectedRoute><Login /></ProtectedRoute>}/>
         <Route path='/register' element={<ProtectedRoute><Register /></ProtectedRoute>}/> 
         <Route path='/forgot-password' element={<ProtectedRoute><ForgotPassword /></ProtectedRoute>}/>
@@ -44,7 +44,7 @@ const App = () => {
       <Routes>
         <Route path='/feed/:number' element={<Modal title='Детали заказа' onClose={() => navigate(backgroundLocation)}><OrderInfo/></Modal>}/>
         <Route path='/ingredients/:id' element={<Modal title='Детали ингредиента' onClose={() => navigate(backgroundLocation)}><IngredientDetails/></Modal>}/>
-        <Route path='/prolife/orders/:number' element={<Modal title='Детали заказа' onClose={() => navigate(backgroundLocation)}><OrderInfo/></Modal>}/>
+        <Route path='/profile/orders/:number' element={<Modal title='Детали заказа' onClose={() => navigate(backgroundLocation)}><OrderInfo/></Modal>}/>
       </Routes>}
   </div>)
 };

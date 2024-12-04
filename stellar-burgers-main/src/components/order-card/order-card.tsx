@@ -35,18 +35,19 @@ export const OrderCard: FC<OrderCardProps> = memo(({ order }) => {
         : 0;
 
     const date = new Date(order.createdAt);
+    const status = order.status;
     return {
       ...order,
       ingredientsInfo,
       ingredientsToShow,
       remains,
       total,
-      date
+      date,
+      status
     };
   }, [order, ingredients]);
 
   if (!orderInfo) return null;
-
   return (
     <OrderCardUI
       orderInfo={orderInfo}

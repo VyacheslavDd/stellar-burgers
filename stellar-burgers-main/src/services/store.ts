@@ -9,6 +9,7 @@ import { ingredientsReducer } from './slices/ingredientsSlice';
 import { feedsReducer } from './slices/feedsSlice';
 import { userReducer } from './slices/userSlice';
 import { constructorReducer } from './slices/constructorSlice';
+import { ordersReducer } from './slices/ordersSlice';
 
 
 const store = configureStore({
@@ -16,7 +17,8 @@ const store = configureStore({
     ingredientsReducer,
     feedsReducer,
     userReducer,
-    constructorReducer
+    constructorReducer,
+    ordersReducer
   },
   devTools: process.env.NODE_ENV !== 'production'
 });

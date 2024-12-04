@@ -11,13 +11,12 @@ export const OrderInfo: FC = () => {
   const orders = useSelector(state => state.feedsReducer.orders);
   const orderData = orders.find(o => o.number === Number(number));
 
-
-
   /* Готовим данные для отображения */
   const orderInfo = useMemo(() => {
     if (!orderData || !ingredients.length) return null;
 
     const date = new Date(orderData.createdAt);
+    const status = orderData.status;
 
     type TIngredientsWithCount = {
       [key: string]: TIngredient & { count: number };
@@ -51,6 +50,7 @@ export const OrderInfo: FC = () => {
       ...orderData,
       ingredientsInfo,
       date,
+      status,
       total
     };
   }, [orderData, ingredients]);
